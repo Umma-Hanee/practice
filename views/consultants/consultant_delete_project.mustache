@@ -1,0 +1,19 @@
+<head>
+  {{> header}}
+</head>
+<body class="bg-gradient-to-t from-blue-900 to-pink-500 font-serif">
+  <!-- Main Content -->
+  <div class="container mx-auto mt-8">
+    <div class="text-center">
+      <img class="mx-auto w-40 mb-6" src="/img/logo.png" alt="Logo" />
+    </div>
+    <h2 class="text-2xl font-bold mb-4">Delete Project</h2>
+    <form action="/consultants/{{ consultantEmail }}/projects/{{ projectId }}/delete" method="post" class="max-w-md mx-auto">
+      <p>Are you sure you want to delete the project "{{ projectName }}"?</p>
+      <!-- Add input fields for the project data if needed for confirmation -->
+      <div class="flex items-center justify-between mt-4">
+        <button type="submit" class="bg-white hover:bg-gradient-to-r hover:from-pink-600 hover:to-purple-600 text-pink-500 font-semibold uppercase tracking-wider py-3 px-6 rounded-lg shadow-lg transition-all duration-300">Delete Project</button>
+      </div>
+    </form>
+  </div>
+</body>

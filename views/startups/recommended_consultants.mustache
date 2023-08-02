@@ -1,0 +1,154 @@
+<!-- Updated startup_dashboard.mustache file -->
+<!DOCTYPE html>
+<html>
+<head>
+  {{> header}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(to top, #002855, #d74292);
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      margin: 0;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar-logo {
+      color: black;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      color: black;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar-link:hover {
+      background-color: #444;
+    }
+
+    .sidebar-icon {
+      margin-right: 0.5rem;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    .heading {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: black;
+    }
+
+    .dashboard-link {
+      display: block;
+      color: #0099ff;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+    }
+
+    .logout-form {
+      margin-top: 2rem;
+    }
+
+    .logout-button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+  /* Add custom styles for the grid card layout */
+    .card {
+      background-color: black;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    
+
+  </style>
+</head>
+<body>
+ <!-- Sidebar -->
+<div class="sidebar">
+  <h2 class="sidebar-logo">Startup Dashboard</h2>
+  <ul>
+    <li><a href="/startups/all_consultants" class="sidebar-link"><i class="fas fa-users sidebar-icon"></i> All Consultants</a></li>
+    <li><a href="/startups/recommended_consultants?company={{startupData.startupName}}&category={{startupData.startupCategory}}" class="sidebar-link"><i class="fas fa-star sidebar-icon"></i> Recommendations</a></li>
+     <li><a href="https://sandbox-flw-web-v3.herokuapp.com/pay/re3zsjjumrkc" class="sidebar-link"><i class="fas fa-credit-card sidebar-icon"></i> Payment System</a></li>
+  </ul>
+  <!-- Logout Form -->
+      <li><a href="/startups/startup_logout" class="sidebar-link bg-gradient-to-t from-blue-900 to-pink-500">
+      <i class="fas fa-sign-out-alt sidebar-icon"></i> Log out
+    </a></li>
+</div>
+
+
+ <!-- Main Content -->
+<div class="main-content">
+  <div class="bg-gray-100 p-4">
+    <div class="container mx-auto">
+      <div class="flex justify-center items-center">
+        <div class="text-center">
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">Recommended Consultants For  {{startupName}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto mt-8">
+    <!-- Display the consultant recommendations in a grid card layout -->
+    <h2 class="text-2xl font-bold mb-4 text-center">Here the recommended consutants just for you!</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {{#recomm}}
+      <div class="card p-4 bg-black shadow-md rounded-lg hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
+        <h3 class="text-white text-lg font-semibold mb-2">{{ consultantName }}</h3>
+        <p class="text-white text-sm">{{ expertise }}</p>
+         <p class="text-white text-sm">{{ email }}</p>
+       <a href="/startups/consultants/{{ email }}/projects" class="text-blue-500 font-bold hover:underline">Explore Projects</a>
+      </div>
+      {{/recomm}}
+    </div>
+  </div>
+</div>
+</body>
+</html>

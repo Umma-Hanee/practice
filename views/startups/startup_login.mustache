@@ -1,0 +1,35 @@
+<html>
+<head>
+  {{>header}}
+</head>
+<body class="bg-gradient-to-t from-blue-900 to-pink-500 font-serif">
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg rounded-lg px-8 py-10 max-w-2xl">
+      <div class="text-center">
+        <img class="mx-auto w-40 mb-6" src="/img/logo.png" alt="Logo" />
+        <h2 class="text-2xl text-white font-semibold mb-6">Startup Login</h2>
+        <p class="text-sm text-white">Please enter your login credentials.</p>
+      </div>
+      <form action="/startups/startup_login" method="post">
+        <div class="grid grid-cols-2 gap-4">
+           <div>
+            <label for="email" class="block text-sm font-medium text-white mb-1">Email</label>
+            <input type="email" id="email" name="email" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter email" required />
+          </div>
+          <div>
+            <label for="pass" class="block text-sm font-medium text-white mb-1">Password</label>
+            <input type="password" id="pass" name="password" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter password" required />
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <button type="submit" class="btn btn-primary w-full bg-white hover:bg-gradient-to-r hover:from-pink-600 hover:to-purple-600 text-pink-500 font-semibold uppercase tracking-wider py-3 px-6 rounded-lg shadow-lg transition-all duration-300">Login</button>
+        </div>
+        <p class="text-sm text-white mt-4 text-center">Don't have an account? <a href="/startups/startup_register" class="text-white hover:underline">Sign up</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+
+
+

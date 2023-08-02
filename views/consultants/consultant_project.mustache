@@ -1,0 +1,234 @@
+<!-- Consultant_profile.mustache file -->
+<html>
+<head>
+  {{> header}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(to top, #002855, #d74292);
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      margin: 0;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar-logo {
+      color: black;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      color: black;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar-link:hover {
+      background-color: #444;
+    }
+
+    .sidebar-icon {
+      margin-right: 0.5rem;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    .heading {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: black;
+    }
+
+    .dashboard-link {
+      display: block;
+      color: #0099ff;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+    }
+
+    .logout-form {
+      margin-top: 2rem;
+    }
+
+    .logout-button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Form Styles */
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      color: black;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      color: black;
+    }
+
+    .btn {
+      background-color:linear-gradient(to top, #002855, #d74292);
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Project Card Styles */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: black;
+    }
+
+    .card p {
+      margin-bottom: 15px;
+      color: black;
+    }
+
+
+  </style>
+</head>
+<body>
+ <!-- Sidebar -->
+  <div class="sidebar">
+    <h2 class="sidebar-logo">Consultant Dashboard</h2>
+    <ul>
+      <!-- Link to My Profile -->
+      <li><a href="/consultants/profile/{{consultantEmail}}" class="sidebar-link"><i class="fas fa-user-circle sidebar-icon"></i> My Profile</a></li>
+      <!-- Link to Projects -->
+       <li><a href="/consultants/{{ consultantEmail }}/projects" class="sidebar-link"><i class="fas fa-tasks sidebar-icon"></i>My Projects</a></li>
+      <!-- Link to Update Project -->
+      <li><a href="/consultants/{{consultantEmail}}/projects/{{projectId}}" class="sidebar-link"><i class="fas fa-tasks sidebar-icon"></i> Update Project</a></li>
+    </ul>
+     <li><a href="/consultants/con_logout" class="sidebar-link bg-gradient-to-t from-blue-900 to-pink-500">
+      <i class="fas fa-sign-out-alt sidebar-icon"></i> Log out
+    </a></li>
+</div>
+  </div>
+ 
+ <!-- Main Content -->
+  <!-- List the consultant's existing projects -->
+<div class="main-content">
+  <h2 class="text-2xl font-bold mb-4">My Projects</h2>
+  <div class="projects-container mt-8">
+    {{#projects}}
+      <div class="bg-white shadow-lg rounded-lg p-4 card">
+        <h2 class="text-lg font-bold mb-2 text-black">{{projectName}}</h2>
+        <p class="text-base text-gray-600">{{projectDescription}}</p>
+        <!-- Add other project details as needed -->
+        <div class="flex justify-end mt-2">
+          <a href="/consultants/{{ consultantEmail }}/projects/{{projectId}}/edit" class="text-blue-600 hover:text-blue-800 mr-2">
+            <i class="fas fa-edit"></i> Edit
+          </a>
+          <a href="/consultants/{{ consultantEmail }}/projects/{{projectId}}/delete" class="text-red-600 hover:text-red-800">
+            <i class="fas fa-trash"></i> Delete
+          </a>
+        </div>
+      </div>
+    {{/projects}}
+    {{^projects}}
+      <p class="text-base text-gray-600">No projects found for the consultant.</p>
+    {{/projects}}
+  </div>
+
+
+ <div class="main-content">
+  <div class="form-container">
+    <!-- Form for project creation -->
+     <h2 class="text-2xl font-bold mb-4 text-black">Create New Project</h2>
+    <form action="/consultants/{{ consultantEmail }}/projects/create" method="POST">
+      <!-- Add input fields for the project data -->
+      <div class="form-group">
+        <label for="projectName">Project Name:</label>
+        <input type="text" id="projectName" name="projectName" required>
+      </div>
+      <div class="form-group">
+        <label for="projectDescription">Project Description:</label>
+        <textarea id="projectDescription" name="projectDescription" required></textarea>
+      </div>
+      <!-- Add any other project fields as needed -->
+      <button type="submit" class="btn btn-primary bg-gradient-to-t from-blue-900 to-pink-500">Add Project</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

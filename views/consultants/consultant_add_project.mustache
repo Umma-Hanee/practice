@@ -1,0 +1,29 @@
+<html>
+<head>
+  {{> header}}
+</head>
+<body class="bg-gradient-to-t from-blue-900 to-pink-500 font-serif">
+  <!-- Main Content -->
+  <div class="container mx-auto mt-8">
+    <div class="text-center">
+      <img class="mx-auto w-40 mb-6" src="/img/logo.png" alt="Logo" />
+    </div>
+    <h2 class="text-2xl font-bold mb-4">Add New Project</h2>
+    <form action="/consultants/{{ consultantEmail }}/projects/add" method="post" class="max-w-md mx-auto">
+      <!-- Add input fields for the project data -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-white mb-1" for="projectName">Project Name</label>
+        <input type="text" name="projectName" id="projectName" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter project name" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-white mb-1" for="projectDescription">Project Description</label>
+        <textarea name="projectDescription" id="projectDescription" rows="4" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter project description" required></textarea>
+      </div>
+      <!-- Add other project fields as needed -->
+      <div class="flex items-center justify-between">
+        <button type="submit" class="btn btn-primary w-full bg-white hover:bg-gradient-to-r hover:from-pink-600 hover:to-purple-600 text-pink-500 font-semibold uppercase tracking-wider py-3 px-6 rounded-lg shadow-lg transition-all duration-300">Add Project</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!-- Updated consultants_dashboard.mustache file -->
+<!DOCTYPE html>
+<html>
+<head>
+  {{> header}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(to top, #002855, #d74292);
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      margin: 0;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar-logo {
+      color: black;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      color: black;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar-link:hover {
+      background-color: #444;
+    }
+
+    .sidebar-icon {
+      margin-right: 0.5rem;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 1rem;
+    }
+
+    .heading {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: black;
+    }
+
+    .dashboard-link {
+      display: block;
+      color: #0099ff;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+    }
+
+    .logout-form {
+      margin-top: 2rem;
+    }
+
+    .logout-button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+  /* Add custom styles for the grid card layout */
+    .card {
+      background-color: black;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+  </style>
+</head>
+<body>
+ <!-- Sidebar -->
+  <div class="sidebar">
+    <h2 class="sidebar-logo">Consultant Dashboard</h2>
+    <ul>
+      <!-- Link to My Profile -->
+      <li><a href="/consultants/profile/{{consultantEmail}}" class="sidebar-link"><i class="fas fa-user-circle sidebar-icon"></i> My Profile</a></li>
+      <!-- Link to Projects -->
+      <li><a href="/consultants/{{consultantEmail}}/projects" class="sidebar-link"><i class="fas fa-tasks sidebar-icon"></i>My Projects</a></li>
+      <!-- Link to Update Project -->
+      <li><a href="/consultants/{{consultantEmail}}/projects/{{projectId}}" class="sidebar-link"><i class="fas fa-tasks sidebar-icon"></i> Update Project</a></li>
+    </ul>
+      <li><a href="/consultants/con_logout" class="sidebar-link bg-gradient-to-t from-blue-900 to-pink-500">
+      <i class="fas fa-sign-out-alt sidebar-icon"></i> Log out
+    </a></li>
+  </div>
+ <!-- Main Content -->
+  <div class="main-content">
+    <div class="bg-gray-100 p-4">
+      <div class="container mx-auto">
+        <div class="flex justify-center items-center">
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">My Profile</h1>
+        
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto mt-8">
+     <form action="/consultants/profile/{{ consultantData.email }}" method="post" class="max-w-md mx-auto">
+  <!-- Add input fields for the consultant profile data -->
+  <div class="mb-4">
+    <label class="block text-white text-sm font-bold mb-2" for="name">Name</label>
+    <input readonly type="text" name="name" id="name" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 text-black" value="{{ consultantData.name }}" required>
+  </div>
+  <div class="mb-4">
+    <label class="block text-white text-sm font-bold mb-2" for="email">Email</label>
+    <input readonly type="email" name="email" id="email" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 text-black" value="{{ consultantData.email }}" required>
+  </div>
+  <div class="mb-4">
+    <label class="block text-white text-sm font-bold mb-2" for="category">Category</label>
+    <select name="category" id="category" class="form-select rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 text-black" required>
+      <option value="E-commerce" {{ consultantData.category === 'E-commerce' ? 'selected' : '' }}>E-commerce</option>
+      <option value="E-health" {{ consultantData.category === 'E-health' ? 'selected' : '' }}>E-health</option>
+      <option value="Fintech" {{ consultantData.category === 'Fintech' ? 'selected' : '' }}>Fintech</option>
+    </select>
+  </div>
+  <!-- Add other profile fields as needed -->
+  <div class="flex items-center justify-between">
+    <button type="submit" class="bg-gradient-to-t from-blue-900 to-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+      Update Profile
+    </button>
+  </div>
+</form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+  {{>header}}
+</head>
+<body class="bg-gradient-to-t from-blue-900 to-pink-500 font-serif">
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-gradient-to-r from-pink-500 to-purple-500 shadow-lg rounded-lg px-8 py-10 max-w-4xl mx-4">
+      <div class="text-center mb-6">
+        <img class="mx-auto w-48 mb-1" src="/img/logo.png" alt="Logo" />
+        <h2 class="text-2xl text-white font-semibold mb-2">New Startup Registration</h2>
+        <p class="text-sm text-white">Please fill out the form below to register your startup.</p>
+      </div>
+      <form action="/startups/startup_register" method="post">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="name" class="block text-sm font-medium text-white mb-1">Username</label>
+            <input type="text" id="name" name="name" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter username" required />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-white mb-1">Email</label>
+            <input type="email" id="email" name="email" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter email" required />
+          </div>
+          <div>
+            <label for="pass" class="block text-sm font-medium text-white mb-1">Password</label>
+            <input type="password" id="pass" name="password" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter password" minlength="8" required />
+          </div>
+          <div>
+            <label for="company" class="block text-sm font-medium text-white mb-1">Company Name</label>
+            <input type="text" id="company" name="company" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter company name" required />
+          </div>
+          <div>
+            <label for="website" class="block text-sm font-medium text-white mb-1">Website</label>
+            <input type="text" id="website" name="website" class="form-input rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500" placeholder="Enter website URL" required />
+          </div>
+          <div>
+            <label for="industry" class="block text-sm font-medium text-white mb-1">Industry</label>
+            <select id="industry" name="category" class="form-select rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500">
+              <option value="" selected disabled>Select industry</option>
+              <option value="Fintech">Fintech</option>
+              <option value="E-commerce">E-commerce & retail-tech</option>
+              <option value="E-health">E-health</option>
+            </select>
+          </div>
+          <div class="col-span-2">
+            <button type="submit" class="btn btn-primary w-full bg-white hover:bg-gradient-to-r hover:from-pink-600 hover:to-purple-600 text-pink-500 font-semibold uppercase tracking-wider py-3 px-6 rounded-lg shadow-lg transition-all duration-300">Register</button>
+          </div>
+        </div>
+        <p class="text-sm text-white mt-4 text-center">Already have an account? <a href="/startups/startup_login" class="text-white hover:underline">Log in</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

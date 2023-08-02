@@ -1,0 +1,40 @@
+<!-- Updated update_project_form.mustache file -->
+<html>
+<head>
+  {{> header}}
+</head>
+<body>
+<!-- Sidebar -->
+  <!-- Sidebar content... -->
+
+ <!-- Main Content -->
+  <div class="main-content">
+    <div class="bg-gray-100 p-4">
+      <div class="container mx-auto">
+        <div class="flex justify-center items-center">
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">Update Project</h1>
+        </div>
+      </div>
+    </div>
+   <div class="container mx-auto mt-8">
+  <form action="/consultants/{{consultantId}}/projects/{{projectId}}" method="post" class="max-w-md mx-auto">
+    <!-- Add input fields for the project data -->
+    <div class="mb-4">
+      <label class="block text-white text-sm font-bold mb-2" for="projectName">Project Name</label>
+      <input type="text" name="projectName" id="projectName" class="appearance-none border rounded w-full py-2 px-3 text-white bg-gray-800 leading-tight focus:outline-none focus:shadow-outline" value="{{ projectName }}" required>
+    </div>
+    <div class="mb-4">
+      <label class="block text-white text-sm font-bold mb-2" for="projectDescription">Project Description</label>
+      <textarea name="projectDescription" id="projectDescription" rows="4" class="appearance-none border rounded w-full py-2 px-3 text-white bg-gray-800 leading-tight focus:outline-none focus:shadow-outline" required>{{ projectDescription }}</textarea>
+    </div>
+    <!-- Add other project fields as needed -->
+    <div class="flex items-center justify-between">
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        Save Project
+      </button>
+    </div>
+  </form>
+</div>
+  </div>
+</body>
+</html>
